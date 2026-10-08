@@ -16,29 +16,11 @@ Built using the **Fourteen Park (`Project ID 4498470078-001`)** zero-seam archit
 
 ```
 Deliverable/
-├── index.html                  # Production HTML template (relative "images/" paths)
-├── index-hosted.html           # Standalone HTML template (official HTTPS CDN image URLs)
+├── index.html                  # Production HTML template (Client CDN URLs - ready for deployment)
+├── index-hosted.html           # Standalone HTML template (Client CDN URLs)
 ├── index-client-cdn.html       # Official client CDN template (assets.tangocrew.com URLs)
 ├── mailchimp-template.html     # Mailchimp master template (mc:edit regions + CAN-SPAM merge tags)
 ├── README.md                   # Technical documentation & ESP deployment guide
-├── images/                     # Optimized 2x Retina production assets
-│   ├── top-bar-2x.png          # Pricing bar (1200x79, 600x40 display)
-│   ├── header-banner-2x.jpg    # Fulton logo + stone/ivy banner (1200x394, 600x197 display)
-│   ├── youre-invited-2x.png    # Mauve "You're Invited" serif banner (1200x200, 600x100 display)
-│   ├── body-copy-2x.png        # Event invitation copy (1200x923, 600x461 display)
-│   ├── goat-logo-2x.png        # The Goat logo centered on #51504F (1200x218, 600x109 display)
-│   ├── event-details-2x.png    # Event address + date/time (1200x276, 600x138 display)
-│   ├── rsvp-btn-2x.png         # RSVP To Attend CTA button (1200x130, 600x65 display)
-│   ├── space-limited-2x.png    # Space is Limited microcopy (1200x110, 600x55 display)
-│   ├── interior-photo-2x.jpg   # High-res interior residence photo (1200x730, 600x365 display)
-│   ├── reservations-copy-2x.png# Reservations copy (1200x240, 600x120 display)
-│   ├── schedule-btn-2x.png     # Schedule A Private Presentation CTA (1200x150, 600x75 display)
-│   ├── divider-2x.png          # Mauve divider bar (1200x80, 600x40 display)
-│   ├── explore-cta-2x.png      # Explore website CTA (1200x260, 600x130 display)
-│   ├── social-fb-2x.png        # Facebook icon on #51504F (600x110, 300x55 display)
-│   ├── social-ig-2x.png        # Instagram icon on #51504F (600x110, 300x55 display)
-│   ├── property-address-2x.png # Property address (1200x145, 600x72 display)
-│   └── footer-banner-2x.jpg    # Footer logos + Equal Housing banner + Legal disclaimer (1200x385, 600x193 display)
 └── previews/
     ├── preview-desktop.png     # Full-length 600px desktop render
     └── preview-mobile.png      # Fluid 390px mobile viewport render
@@ -50,10 +32,9 @@ Deliverable/
 
 | File | Best Used For | Notes |
 | :--- | :--- | :--- |
-| **`index-hosted.html`** | **Direct Sending & Fast Preview** | Self-contained, single-file HTML. All images load directly from GitHub repository CDN (`https://raw.githubusercontent.com/MusfiqurRahman12/fulton-eblast/main/assets/`). Works immediately in any ESP or CRM (HubSpot, Salesforce, Klaviyo, SendGrid, Mailtrap) without uploading assets. Zero dark-mode color shifting on iPhone Gmail. |
-| **`index-client-cdn.html`** | **Official Client CDN Deployment** | Points to official client asset path: `https://assets.tangocrew.com/Fulton/4559216753/`. Deploy after assets are synced to client media server. |
-| **`mailchimp-template.html`** | **Mailchimp Campaigns** | Master Mailchimp template including CAN-SPAM compliant unsubscribe/preference merge tags and responsive table layout. |
-| **`index.html`** | **Self-Hosted / ZIP Upload** | References `./images/`. Upload the `images/` folder alongside `index.html` to your media server or ZIP-based ESP importer. |
+| **`index.html`** / **`index-client-cdn.html`** | **Production & ESP Deployment** | Production template pointing to official client CDN (`https://assets.tangocrew.com/Fulton/4559216753/`). All assets are live and CDN-hosted with zero local image dependencies. Works immediately in any ESP/CRM (HubSpot, Salesforce, Klaviyo, SendGrid). |
+| **`index-hosted.html`** | **Direct Sending & Fast Preview** | Standalone single-file HTML utilizing official HTTPS CDN image URLs. Works immediately with zero dark-mode color shifting on iPhone Gmail. |
+| **`mailchimp-template.html`** | **Mailchimp Campaigns** | Master Mailchimp template including `mc:edit` editable sections and CAN-SPAM compliant unsubscribe/preference merge tags. |
 
 ---
 

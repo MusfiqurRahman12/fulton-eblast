@@ -177,16 +177,13 @@ SLICES_SPEC = [
         "href": "https://liveatfulton.com",
         "fmt": "JPEG", "quality": 92
     }
-]
-
-print("\n2. Slicing assets and saving to assets/ and Deliverable/images/...")
+print("\n2. Slicing assets and saving to assets/...")
 all_filenames = []
 for spec in SLICES_SPEC:
     fname = spec["name"]
     all_filenames.append(fname)
     cropped = full_img.crop((spec["x0"], spec["y0"], spec["x1"], spec["y1"]))
     local_path = os.path.join(ASSETS_DIR, fname)
-    deliv_path = os.path.join(DELIV_IMAGES, fname)
 
     if spec["fmt"] == "JPEG":
         cropped_rgb = cropped.convert("RGB")
@@ -194,13 +191,8 @@ for spec in SLICES_SPEC:
     else:
         cropped.save(local_path, "PNG", optimize=True)
 
-    shutil.copy2(local_path, deliv_path)
     sz = os.path.getsize(local_path)
     print(f"   {fname:25s} -> {cropped.width}x{cropped.height} ({sz//1024} KB)")
-
-# Also copy over hero image.png if needed as alternative
-if os.path.exists(os.path.join(HERE, "hero image.png")):
-    shutil.copy2(os.path.join(HERE, "hero image.png"), os.path.join(DELIV_IMAGES, "hero-image.png"))
 
 print("\n3. Generating HTML templates with Fourteen Park bulletproof architecture...")
 
@@ -413,13 +405,12 @@ html_local = build_email_markup("assets/")
 with open(os.path.join(HERE, "index.html"), "w", encoding="utf-8") as f:
     f.write(html_local)
 
-# 2) Deliverable/index.html (relative images/)
-html_deliv = build_email_markup("images/")
+# 2) Deliverable/index.html (client CDN)
+html_client_cdn = build_email_markup(CLIENT_CDN)
 with open(os.path.join(DELIV_DIR, "index.html"), "w", encoding="utf-8") as f:
-    f.write(html_deliv)
+    f.write(html_client_cdn)
 
 # 3) Deliverable/index-client-cdn.html (client CDN)
-html_client_cdn = build_email_markup(CLIENT_CDN)
 with open(os.path.join(DELIV_DIR, "index-client-cdn.html"), "w", encoding="utf-8") as f:
     f.write(html_client_cdn)
 
