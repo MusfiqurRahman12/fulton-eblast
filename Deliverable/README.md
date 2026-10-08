@@ -50,7 +50,7 @@ Deliverable/
 
 | File | Best Used For | Notes |
 | :--- | :--- | :--- |
-| **`index-hosted.html`** | **Direct Sending & Fast Preview** | Self-contained, single-file HTML. All images load directly from high-speed official HTTPS CDN endpoints (`https://assets.tangocrew.com/Fulton/4559216753/`). Works immediately in any ESP or CRM (HubSpot, Salesforce, Klaviyo, SendGrid, Mailtrap) without uploading assets. Zero dark-mode color shifting on iPhone Gmail. |
+| **`index-hosted.html`** | **Direct Sending & Fast Preview** | Self-contained, single-file HTML. All images load directly from GitHub repository CDN (`https://raw.githubusercontent.com/MusfiqurRahman12/fulton-eblast/main/assets/`). Works immediately in any ESP or CRM (HubSpot, Salesforce, Klaviyo, SendGrid, Mailtrap) without uploading assets. Zero dark-mode color shifting on iPhone Gmail. |
 | **`index-client-cdn.html`** | **Official Client CDN Deployment** | Points to official client asset path: `https://assets.tangocrew.com/Fulton/4559216753/`. Deploy after assets are synced to client media server. |
 | **`mailchimp-template.html`** | **Mailchimp Campaigns** | Master Mailchimp template including CAN-SPAM compliant unsubscribe/preference merge tags and responsive table layout. |
 | **`index.html`** | **Self-Hosted / ZIP Upload** | References `./images/`. Upload the `images/` folder alongside `index.html` to your media server or ZIP-based ESP importer. |

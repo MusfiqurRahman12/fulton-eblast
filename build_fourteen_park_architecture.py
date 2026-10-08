@@ -25,6 +25,7 @@ os.makedirs(ASSETS_DIR, exist_ok=True)
 os.makedirs(DELIV_IMAGES, exist_ok=True)
 
 CLIENT_CDN = "https://assets.tangocrew.com/Fulton/4559216753/"
+GITHUB_CDN = "https://raw.githubusercontent.com/MusfiqurRahman12/fulton-eblast/main/assets/"
 BG_COLOR = "#51504F" # RGB (81, 80, 79)
 MAUVE_COLOR = "#905D5A" # RGB (144, 93, 90)
 
@@ -422,35 +423,23 @@ html_client_cdn = build_email_markup(CLIENT_CDN)
 with open(os.path.join(DELIV_DIR, "index-client-cdn.html"), "w", encoding="utf-8") as f:
     f.write(html_client_cdn)
 
-# 4) Deliverable/mailchimp-template.html
-html_mailchimp = build_email_markup(CLIENT_CDN, is_mailchimp=True)
+# 4) Deliverable/mailchimp-template.html (using GitHub CDN for immediate ESP readiness)
+html_mailchimp = build_email_markup(GITHUB_CDN, is_mailchimp=True)
 with open(os.path.join(DELIV_DIR, "mailchimp-template.html"), "w", encoding="utf-8") as f:
     f.write(html_mailchimp)
 
-# 5) index-hosted.html (in project root, used for live email sending)
+# 5) index-hosted.html (uses GitHub raw CDN for immediate live testing and zero external dependencies)
+html_hosted = build_email_markup(GITHUB_CDN)
 with open(os.path.join(HERE, "index-hosted.html"), "w", encoding="utf-8") as f:
-    f.write(html_client_cdn)
+    f.write(html_hosted)
 
 with open(os.path.join(DELIV_DIR, "index-hosted.html"), "w", encoding="utf-8") as f:
-    f.write(html_client_cdn)
+    f.write(html_hosted)
 
 print("   Generated index.html, index-hosted.html, and Deliverable/ variants successfully.")
 
-# 5. Upload all assets to Client FTP
-print("\n5. Connecting to Client FTP server (5.183.10.242)...")
-try:
-    ftp = ftplib.FTP("5.183.10.242", timeout=30)
-    ftp.login("u768120297.Dflowfulton", "DF_confian01!100726")
-    print("   FTP Login successful! Uploading 16 assets...")
-    for fname in all_filenames:
-        lpath = os.path.join(ASSETS_DIR, fname)
-        with open(lpath, "rb") as f:
-            ftp.storbinary(f"STOR {fname}", f)
-        print(f"   Uploaded -> {fname}")
-    ftp.quit()
-    print("   All assets uploaded to Client FTP successfully!")
-except Exception as e:
-    print(f"   FTP upload error: {e}")
+# Note: Client FTP upload is skipped as requested by user (images hosted on GitHub repo / free asset CDN)
+print("\n5. Client FTP upload bypassed (assets served from GitHub repo CDN).")
 
 # 6. Build Deliverable ZIP package
 print("\n6. Creating updated Deliverable ZIP package...")
