@@ -35,11 +35,12 @@ Website: https://liveatfulton.com
 
 from datetime import datetime
 
-ts_str = datetime.now().strftime("%I:%M:%S %p")
+ts_str = datetime.now().strftime("%I:%M %p")
 msg = EmailMessage()
-msg["Subject"] = f"You're Invited — Step Inside Fulton Residences (Test #{ts_str})"
+msg["Subject"] = f"[Update {ts_str}] Fulton Residences — Step Inside (Seamless Zero-Seam Build)"
 msg["From"] = f"Fulton Residences <{SMTP_USER}>"
 msg["To"] = TO_EMAIL
+msg["Reply-To"] = SMTP_USER
 msg.set_content(plain_text)
 msg.add_alternative(html_content, subtype="html")
 

@@ -43,7 +43,7 @@ SLICES_SPEC = [
         "y0": 0, "y1": 79, "x0": 0, "x1": 1200,
         "dw": 600, "dh": 40,
         "alt": "STUDIO, ONE, & TWO-BEDROOM RESIDENCES from the HIGH $200s",
-        "href": None,
+        "href": "https://liveatfulton.com",
         "fmt": "PNG"
     },
     {
@@ -59,7 +59,7 @@ SLICES_SPEC = [
         "y0": 473, "y1": 673, "x0": 0, "x1": 1200,
         "dw": 600, "dh": 100,
         "alt": "You're Invited",
-        "href": None,
+        "href": "https://liveatfulton.com",
         "fmt": "PNG"
     },
     {
@@ -67,7 +67,7 @@ SLICES_SPEC = [
         "y0": 673, "y1": 1596, "x0": 0, "x1": 1200,
         "dw": 600, "dh": 461,
         "alt": "THE WAIT IS ALMOST OVER — COME SEE FULTON RESIDENCES IN PERSON. Join us at The Goat in Germantown for cocktails and light bites — and your first opportunity to experience Fulton Residences in person. Located directly across the street from Fulton on Second Ave, The Goat will serve as home base for the evening. From there, guests can walk over with our sales team for a guided hard hat tour, offering an up-close look at the residences, amenity spaces and progress happening throughout the building. Come raise a glass with us, meet the Fulton team and finally step inside the project you've been hearing about.",
-        "href": None,
+        "href": "https://liveatfulton.com",
         "fmt": "PNG"
     },
     {
@@ -99,7 +99,7 @@ SLICES_SPEC = [
         "y0": 2220, "y1": 2330, "x0": 0, "x1": 1200,
         "dw": 600, "dh": 55,
         "alt": "SPACE IS LIMITED • RSVP REQUIRED",
-        "href": None,
+        "href": "mailto:info@liveatfulton.com?subject=I%20want%20to%20come%20to%20the%20event",
         "fmt": "PNG"
     },
     {
@@ -115,7 +115,7 @@ SLICES_SPEC = [
         "y0": 3060, "y1": 3300, "x0": 0, "x1": 1200,
         "dw": 600, "dh": 120,
         "alt": "Fulton Residences is now accepting reservations, with homes starting in the high $200s.",
-        "href": None,
+        "href": "https://liveatfulton.com",
         "fmt": "PNG"
     },
     {
@@ -131,7 +131,7 @@ SLICES_SPEC = [
         "y0": 3450, "y1": 3530, "x0": 0, "x1": 1200,
         "dw": 600, "dh": 40,
         "alt": "",
-        "href": None,
+        "href": "https://liveatfulton.com",
         "fmt": "PNG"
     },
     {
