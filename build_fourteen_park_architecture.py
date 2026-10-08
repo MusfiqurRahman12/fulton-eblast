@@ -43,7 +43,7 @@ SLICES_SPEC = [
         "y0": 0, "y1": 79, "x0": 0, "x1": 1200,
         "dw": 600, "dh": 40,
         "alt": "STUDIO, ONE, & TWO-BEDROOM RESIDENCES from the HIGH $200s",
-        "href": "https://liveatfulton.com",
+        "href": None,
         "fmt": "PNG"
     },
     {
@@ -67,7 +67,7 @@ SLICES_SPEC = [
         "y0": 673, "y1": 1596, "x0": 0, "x1": 1200,
         "dw": 600, "dh": 461,
         "alt": "THE WAIT IS ALMOST OVER — COME SEE FULTON RESIDENCES IN PERSON. Join us at The Goat in Germantown for cocktails and light bites — and your first opportunity to experience Fulton Residences in person. Located directly across the street from Fulton on Second Ave, The Goat will serve as home base for the evening. From there, guests can walk over with our sales team for a guided hard hat tour, offering an up-close look at the residences, amenity spaces and progress happening throughout the building. Come raise a glass with us, meet the Fulton team and finally step inside the project you've been hearing about.",
-        "href": "https://liveatfulton.com",
+        "href": None,
         "fmt": "PNG"
     },
     {
@@ -99,7 +99,7 @@ SLICES_SPEC = [
         "y0": 2220, "y1": 2330, "x0": 0, "x1": 1200,
         "dw": 600, "dh": 55,
         "alt": "SPACE IS LIMITED • RSVP REQUIRED",
-        "href": "mailto:info@liveatfulton.com?subject=I%20want%20to%20come%20to%20the%20event",
+        "href": None,
         "fmt": "PNG"
     },
     {
@@ -115,7 +115,7 @@ SLICES_SPEC = [
         "y0": 3060, "y1": 3300, "x0": 0, "x1": 1200,
         "dw": 600, "dh": 120,
         "alt": "Fulton Residences is now accepting reservations, with homes starting in the high $200s.",
-        "href": "https://liveatfulton.com",
+        "href": None,
         "fmt": "PNG"
     },
     {
@@ -131,7 +131,7 @@ SLICES_SPEC = [
         "y0": 3450, "y1": 3530, "x0": 0, "x1": 1200,
         "dw": 600, "dh": 40,
         "alt": "",
-        "href": "https://liveatfulton.com",
+        "href": None,
         "fmt": "PNG"
     },
     {
@@ -423,13 +423,13 @@ html_client_cdn = build_email_markup(CLIENT_CDN)
 with open(os.path.join(DELIV_DIR, "index-client-cdn.html"), "w", encoding="utf-8") as f:
     f.write(html_client_cdn)
 
-# 4) Deliverable/mailchimp-template.html (using GitHub CDN for immediate ESP readiness)
-html_mailchimp = build_email_markup(GITHUB_CDN, is_mailchimp=True)
+# 4) Deliverable/mailchimp-template.html
+html_mailchimp = build_email_markup(CLIENT_CDN, is_mailchimp=True)
 with open(os.path.join(DELIV_DIR, "mailchimp-template.html"), "w", encoding="utf-8") as f:
     f.write(html_mailchimp)
 
-# 5) index-hosted.html (uses GitHub raw CDN for immediate live testing and zero external dependencies)
-html_hosted = build_email_markup(GITHUB_CDN)
+# 5) index-hosted.html (uses official client CDN)
+html_hosted = build_email_markup(CLIENT_CDN)
 with open(os.path.join(HERE, "index-hosted.html"), "w", encoding="utf-8") as f:
     f.write(html_hosted)
 
@@ -438,8 +438,21 @@ with open(os.path.join(DELIV_DIR, "index-hosted.html"), "w", encoding="utf-8") a
 
 print("   Generated index.html, index-hosted.html, and Deliverable/ variants successfully.")
 
-# Note: Client FTP upload is skipped as requested by user (images hosted on GitHub repo / free asset CDN)
-print("\n5. Client FTP upload bypassed (assets served from GitHub repo CDN).")
+# 5. Upload all assets to Client FTP (5.183.10.242)
+print("\n5. Connecting to Client FTP server (5.183.10.242)...")
+try:
+    ftp = ftplib.FTP("5.183.10.242", timeout=30)
+    ftp.login("u768120297.Dflowfulton", "DF_confian01!100726")
+    print("   FTP Login successful! Uploading 16 assets...")
+    for fname in all_filenames:
+        lpath = os.path.join(ASSETS_DIR, fname)
+        with open(lpath, "rb") as f:
+            ftp.storbinary(f"STOR {fname}", f)
+        print(f"   Uploaded -> {fname}")
+    ftp.quit()
+    print("   All assets uploaded to Client FTP successfully!")
+except Exception as e:
+    print(f"   FTP upload error: {e}")
 
 # 6. Build Deliverable ZIP package
 print("\n6. Creating updated Deliverable ZIP package...")
